@@ -17,9 +17,12 @@ app.use(bodyParser.json());
 app.use(morgan("dev")); //for getting https request log info
 
 //connecting to database
-
+const atlasUrl = process.env.ATLAS_URL.replace(
+  "PASSWORD",
+  process.env.ATLAS_PASSWORD
+);
 mongoose
-  .connect(process.env.MONGODB_COMPASS)
+  .connect(atlasUrl)
   .then(() => {
     console.log("mongodb connected ");
   })
